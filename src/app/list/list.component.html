@@ -1,0 +1,130 @@
+<div class="container">
+
+<!--  create-->
+
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createModal" data-whatever="@mdo">Create</button>
+
+  <!-- Modal -->
+  <div class="modal fade" id="createModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">add new employee</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form >
+            <div class="form-group">
+              <label class="col-form-label">title:</label>
+              <input type="text" class="form-control" name="title" [(ngModel)]="book.title">
+            </div>
+            <div class="form-group">
+              <label  class="col-form-label">author:</label>
+              <input type="text" class="form-control" name="author" [(ngModel)]="book.author">
+            </div>
+            <div class="form-group">
+              <label  class="col-form-label">description:</label>
+              <input type="text" class="form-control" name="description" [(ngModel)]="book.description">
+            </div>
+
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button class="btn btn-primary"  (click)="submit()">Send</button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!--end create-->
+  <table class="table">
+    <thead>
+    <tr>
+      <th scope="col">id</th>
+      <th scope="col">title</th>
+      <th scope="col">author</th>
+      <th scope="col">action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor=" let b of bookList">
+      <th scope="row">{{b.id}}</th>
+      <td>{{b.title}}</td>
+      <td>{{b.author}}</td>
+      <td>
+        <button type="button" (click)="openModalEdit(b)" class="btn btn-primary">Edit</button>
+        <button type="button" (click)="openModalConfirm(b.id)" class="btn btn-danger">Remove</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+
+<!-- Modal delete-->
+<div class="modal fade" id="confirmDel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" >Are you sure you want to delete Book have id = {{deleteId}}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" (click)="delete()" class="btn btn-primary">Sure</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal edit-->
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" >add new employee</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label class="col-form-label">id:</label>
+            <input type="text" class="form-control" id="id" [(ngModel)]="bookUpdate.id" name="id" readonly>
+          </div>
+          <div class="form-group">
+            <label class="col-form-label">name:</label>
+            <input type="text" class="form-control" id="name" [(ngModel)]="bookUpdate.title" name="name">
+          </div>
+          <div class="form-group">
+            <label  class="col-form-label">price:</label>
+            <input type="text" class="form-control" id="price" [(ngModel)]="bookUpdate.author" name="price">
+          </div>
+          <div class="form-group">
+            <label  class="col-form-label">provider:</label>
+            <input type="text" class="form-control" id="provider" [(ngModel)]="bookUpdate.description" name="provider">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" (click)="usave()">Send</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
